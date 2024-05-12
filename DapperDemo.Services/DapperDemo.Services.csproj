@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DapperDemo.Entities\DapperDemo.Entities.csproj" />
+    <ProjectReference Include="..\DapperDemo.Extensions\DapperDemo.Extensions.csproj" />
+    <ProjectReference Include="..\DapperDemo.Models\DapperDemo.Models.csproj" />
+    <ProjectReference Include="..\DapperDemo.Repositories\DapperDemo.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>

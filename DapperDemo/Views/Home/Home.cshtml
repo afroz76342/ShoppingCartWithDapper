@@ -1,0 +1,72 @@
+﻿@model DapperDemo.Models.ProductModel
+
+
+
+<div class="container-fluid">
+    <div class="text-center mb-3">
+        <h1 class="display-4">Welcome, CRUDE Demo with Dapper</h1>
+    </div>
+
+
+    @if (TempData["Status"] != null)
+    {
+        <div class="text-center mt-3">
+            <div class="col-lg-6 mx-auto alert-dismissible fade show @(Convert.ToBoolean(TempData["Status"])? "alert alert-success":"alert alert-danger")" role="alert" id="autoHideAlert">
+                @TempData["Message"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            
+            </div>
+        </div>
+    }
+
+
+    @if (Model != null && Model.Products != null && Model.Products.Count > 0 && Model.Currenties != null && Model.Currenties.Count > 0)
+    {
+        <div class="">
+
+            <div class="col-lg-6 mx-auto">
+                <div class="text-end mb-3">
+                    <a asp-controller="Home" asp-action="Add" class="text-decoration-none btn btn-dark"><i class="fa-solid fa-plus"></i> Add New </a>
+                </div>
+
+                <div class="border border-secondary-subtle px-3 rounded pb-0">
+                   
+
+                <div class="row py-2 border-bottom">
+                    <div class="col-1 fw-bold">SN. </div>
+                    <div class="col fw-bold"> Product  </div>
+                    <div class="col fw-bold"> Price  </div>
+                    <div class="col-2 fw-bold text-end"> Action </div>
+                </div>
+
+
+                @foreach (var product in Model.Products)
+                {
+                        <div class="row py-2 @((product != Model.Products.Last()) ? "border-bottom" : "")">
+                        <div class="col-1"> @product.Sequence  </div>
+                        <div class="col">  @product.Name </div>
+                        <div class="col"> @product.Price </div>
+                            <div class="col-2 d-flex justify-content-end">
+                            <a href="@Url.Action("Edit", "Home", new { productId = product.Id })" class="text-dark me-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="@Url.Action("DeleteProduct", "Home", new { productId = product.Id })" class="text-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><i class="fa-solid fa-trash-can"></i></a>
+                        </div>
+                    </div>
+
+                }
+            </div>
+            </div>
+        </div>
+        <div>
+        </div>
+    } else
+    {
+
+        <div class="text-center mt-3">
+            <div class="col-lg-6 mx-auto alert alert-secondary" role="alert">
+                Unfortunately, there are currently no products available for display. Please check back later for updates
+            </div>
+        </div>
+    }
+</div>
+
+
